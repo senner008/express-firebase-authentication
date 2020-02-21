@@ -31,3 +31,8 @@ module.exports = firebaseConfig;
 }
 
 ```
+
+## TODO :
+- logout ( delete localstorage )
+- add webpack
+- add signup
