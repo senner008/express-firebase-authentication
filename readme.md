@@ -36,5 +36,4 @@ module.exports = firebaseConfig;
  - npm run dev
 
 ## TODO :
-- logout ( delete localstorage )
 - add signup
