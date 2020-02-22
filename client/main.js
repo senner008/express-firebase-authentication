@@ -4,11 +4,11 @@ import {auth} from './firebase-service';
 import makeCall from "./makeCall.js"
 
 function toggleLoginStatus (status) {
-    document.querySelector("span").innerHTML = status;
+    document.querySelector(".login-status span").innerHTML = status;
 }
 
 function privateContent (content) {
-    document.querySelector("p").innerHTML = content;
+    document.querySelector("p.private").innerHTML = content;
 }
 
 var USER_LOGGED_IN;
@@ -21,12 +21,25 @@ firebase.auth().onAuthStateChanged(user => {
     }
  });
  
-document.querySelector(".login").addEventListener("click", async () => {
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+function validateCredentials (user, pass) {
+    if (!validateEmail(user)) throw {message :"invalid email!" }
+    if (!user || !pass) throw {message :"missing credentials!" }
+}
+
+document.querySelector(".login").addEventListener("click", async (e) => {
+
+    e.preventDefault();
 
     const user = document.querySelector("form #user").value;
     const pass = document.querySelector("form #pass").value;
 
     try {
+        validateCredentials(user, pass);
         await auth().signInWithEmailAndPassword(user, pass);
         toggleLoginStatus("User logged in!");
     }
@@ -34,6 +47,11 @@ document.querySelector(".login").addEventListener("click", async () => {
         console.log(err);
         toggleLoginStatus(err.message);
     }
+});
+
+document.querySelector(".logout").addEventListener("click", async () => {
+    await auth().signOut();
+    toggleLoginStatus("user logged out");
 })
 
 document.querySelector(".private").addEventListener("click", async () => {
