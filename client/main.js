@@ -27,8 +27,8 @@ function validateEmail(email) {
 }
 
 function validateCredentials (user, pass) {
-    if (!validateEmail(user)) throw {message :"invalid email!" }
-    if (!user || !pass) throw {message :"missing credentials!" }
+    if (!validateEmail(user)) throw {message :"please provide a valid email" }
+    if (!user || !pass) throw {message :"please provide login credentials" }
 }
 
 document.querySelector(".login").addEventListener("click", async (e) => {
