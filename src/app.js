@@ -14,11 +14,12 @@ app.use(express.static(path.join(__dirname, '../public')));
 const admin = require("../admin.js")
 
 app.post('/auth', async (req, res) => {
+  var token;
   if (
     req.headers.authorization &&
     req.headers.authorization.split(' ')[0] === 'Bearer'
   ) {
-    var token =  req.headers.authorization.split(' ')[1];
+    token =  req.headers.authorization.split(' ')[1];
   }
   try {
     await admin.auth().verifyIdToken(token);
