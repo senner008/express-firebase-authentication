@@ -32,7 +32,9 @@ module.exports = firebaseConfig;
 
 ```
 
+## To run :
+ - npm run dev
+
 ## TODO :
 - logout ( delete localstorage )
-- add webpack
 - add signup

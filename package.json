@@ -3,9 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
     "build": "webpack",
-    "watch": "webpack --watch"
+    "dev": "webpack --watch"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -20,6 +19,7 @@
     "validate-email-node-js": "0.0.2"
   },
   "devDependencies": {
+    "nodemon-webpack-plugin": "^4.3.1",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
   }

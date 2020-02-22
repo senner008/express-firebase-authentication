@@ -3,6 +3,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const app = express();
+const port = 3000
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -32,4 +33,6 @@ app.get('/', (req, res) => {
   res.sendFile('index.html');
 });
 
-module.exports = app;
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+

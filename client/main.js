@@ -7,17 +7,17 @@ function toggleLoginStatus (status) {
     document.querySelector("span").innerHTML = status;
 }
 
-function showPriviligedContent (content) {
+function privateContent (content) {
     document.querySelector("p").innerHTML = content;
 }
 
-var GLOBAL_USER;
+var USER_LOGGED_IN;
 
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
-      GLOBAL_USER = user;
+        USER_LOGGED_IN = true;
     } else {
-      GLOBAL_USER = null;
+        USER_LOGGED_IN = false;
     }
  });
  
@@ -36,10 +36,10 @@ document.querySelector(".login").addEventListener("click", async () => {
     }
 })
 
-document.querySelector(".priviliged").addEventListener("click", async () => {
+document.querySelector(".private").addEventListener("click", async () => {
 
     try {
-        if (!GLOBAL_USER) {
+        if (!USER_LOGGED_IN) {
             throw "not logged in!"
         }
         const token = await auth().currentUser.getIdToken();
@@ -48,9 +48,9 @@ document.querySelector(".priviliged").addEventListener("click", async () => {
             "",
             token
         );
-        showPriviligedContent(message.body);
+        privateContent(message.body);
     }
     catch (err) {
-        showPriviligedContent(err);
+        privateContent(err);
     }
 });
