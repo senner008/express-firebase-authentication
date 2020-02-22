@@ -44,7 +44,6 @@ document.querySelector(".login").addEventListener("click", async (e) => {
         toggleLoginStatus("User logged in!");
     }
     catch (err) {
-        console.log(err);
         toggleLoginStatus(err.message);
     }
 });
