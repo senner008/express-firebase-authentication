@@ -1,11 +1,11 @@
 export default async function makeCall(path, payload, token) {
 
-    const jsonHeader = {
+    const header = {
         'Content-Type': 'application/json',
         'authorization': `Bearer ${token}`
     }
     const result = await fetch(path, {
-        headers: jsonHeader,
+        headers: header,
         method: 'POST',
         body: JSON.stringify({data : payload})
     });

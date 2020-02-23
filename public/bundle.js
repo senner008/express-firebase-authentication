@@ -118,7 +118,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var fire
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return makeCall; });\nasync function makeCall(path, payload, token) {\r\n\r\n    const jsonHeader = {\r\n        'Content-Type': 'application/json',\r\n        'authorization': `Bearer ${token}`\r\n    }\r\n    const result = await fetch(path, {\r\n        headers: jsonHeader,\r\n        method: 'POST',\r\n        body: JSON.stringify({data : payload})\r\n    });\r\n    if (result.status !== 200) {\r\n        throw result.statusText;\r\n    } else {\r\n        return result.json();\r\n    }\r\n}\r\n\r\n\n\n//# sourceURL=webpack:///./client/makeCall.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return makeCall; });\nasync function makeCall(path, payload, token) {\r\n\r\n    const header = {\r\n        'Content-Type': 'application/json',\r\n        'authorization': `Bearer ${token}`\r\n    }\r\n    const result = await fetch(path, {\r\n        headers: header,\r\n        method: 'POST',\r\n        body: JSON.stringify({data : payload})\r\n    });\r\n    if (result.status !== 200) {\r\n        throw result.statusText;\r\n    } else {\r\n        return result.json();\r\n    }\r\n}\r\n\r\n\n\n//# sourceURL=webpack:///./client/makeCall.js?");
 
 /***/ }),
 

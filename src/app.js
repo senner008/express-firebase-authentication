@@ -8,7 +8,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
-const admin = require("../admin.js")
+const admin = require("./admin.js")
 
 app.post('/auth', async (req, res) => {
   var token;
@@ -20,10 +20,11 @@ app.post('/auth', async (req, res) => {
   }
   try {
     await admin.auth().verifyIdToken(token);
-    res.json({body : "content received"});
+    res.json({body : "private content"});
   }
   catch (err) {
-    res.json({body : "unauthorized!"});
+    res.status(401);
+    res.send(err);
   }
 });
 
