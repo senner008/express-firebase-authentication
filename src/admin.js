@@ -1,5 +1,5 @@
 
-const serviceAccount = require("../configs/node-express-auth-firebase.json");
+const serviceAccount = require("../configs/private-admin-key.json");
 const admin = require("firebase-admin");
 
 admin.initializeApp({
